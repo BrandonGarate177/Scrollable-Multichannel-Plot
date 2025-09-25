@@ -4,6 +4,8 @@ An interactive visualization tool for exploring multichannel **EEG (µV)** and *
 Built for the QUASAR coding screener assignment, this script makes it easy to scroll, zoom, and inspect neurophysiological signals with a modern, user-friendly UI.
 
 Live Demo: HTML PLOT
+
+
 ---
 
 ## Features
