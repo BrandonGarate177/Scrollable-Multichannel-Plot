@@ -1,10 +1,11 @@
-# EEG + ECG Multichannel Plot Visualizer
+# EEG + ECG Multichannel [Plot](https://multi-channel-plot-visualizer.netlify.app/) Visualizer
 
 An interactive visualization tool for exploring multichannel **EEG (µV)** and **ECG (mV)** data from CSV files.
 Built for the QUASAR coding screener assignment, this script makes it easy to scroll, zoom, and inspect neurophysiological signals with a modern, user-friendly UI.
 
-Live Demo: HTML PLOT
+The hosted HTML can be found at this link: 
 
+https://multi-channel-plot-visualizer.netlify.app/
 
 ---
 
@@ -20,6 +21,19 @@ Live Demo: HTML PLOT
   * Interactive HTML (`.html`)
   * Static image (`.png`)
   * Vector format (`.pdf`)
+
+---
+
+
+
+## Demo
+
+### Interactive Plot (HTML)
+
+
+https://github.com/user-attachments/assets/4fe42941-f975-4a17-9c1c-81f885b687a8
+
+
 
 ---
 
@@ -41,18 +55,6 @@ Example with downsampling & limited channels:
 ```bash
 python plot_signals.py -d "EEG and ECG data_02_raw.csv" --channels Fz Cz P3 C3 F3 --step 10 --show
 ```
-
----
-
-## Demo
-
-### Interactive Plot (HTML)
-
-![Placeholder for GIF showing scroll/zoom](./docs/demo.gif)
-
-### Example Screenshot
-
-![Placeholder for static screenshot](./docs/screenshot.png)
 
 ---
 
