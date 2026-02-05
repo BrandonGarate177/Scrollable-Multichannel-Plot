@@ -1,43 +1,25 @@
-# EEG + ECG Multichannel [Plot](https://multi-channel-plot-visualizer.netlify.app/) Visualizer
+# Scrollable Multichannel EEG/ECG Plotter
 
-An interactive visualization tool for exploring multichannel **EEG (µV)** and **ECG (mV)** data from CSV files.
-Built for the QUASAR coding screener assignment, this script makes it easy to scroll, zoom, and inspect neurophysiological signals with a modern, user-friendly UI.
+Interactive visualization of multichannel EEG (uV) and ECG (mV) signals from CSV files. The plot is scrollable, zoomable, and suitable for quick signal inspection or sharing as a static export.
 
-The hosted HTML can be found at this link: 
+Live demo: https://multi-channel-plot-visualizer.netlify.app/
 
-https://multi-channel-plot-visualizer.netlify.app/
+## Quick start
 
----
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python main.py --show
+```
 
-## Features
+## Usage
 
-* **Multichannel plotting** of EEG (µV), ECG (mV), and CM reference signals.
-* **Interactive zoom & pan** with range slider and modebar tools.
-* **Unit handling**: automatic conversion of ECG/CM signals from µV → mV.
-* **Channel selection**: plot all channels or only a subset.
-* **Downsampling**: keep every Nth sample to handle large datasets efficiently.
-* **Export options**:
+```bash
+python main.py -d "EEG and ECG data_02_raw.csv" --channels Fz Cz P3 C3 F3 --step 10 --show
+```
 
-  * Interactive HTML (`.html`)
-  * Static image (`.png`)
-  * Vector format (`.pdf`)
-
----
-
-
-
-## Demo
-
-### Interactive Plot (HTML)
-
-
-https://github.com/user-attachments/assets/4fe42941-f975-4a17-9c1c-81f885b687a8
-
-
-
----
-
-## Command Line Options
+### Command line options
 
 | Argument          | Description                                          | Default                          |
 | ----------------- | ---------------------------------------------------- | -------------------------------- |
@@ -50,60 +32,22 @@ https://github.com/user-attachments/assets/4fe42941-f975-4a17-9c1c-81f885b687a8
 | `--step`          | Downsample factor (e.g., `5` keeps every 5th sample) | `1`                              |
 | `--initial-range` | Initial time window to display (`START END`)         | Full range                       |
 
-Example with downsampling & limited channels:
+## Outputs
 
-```bash
-python plot_signals.py -d "EEG and ECG data_02_raw.csv" --channels Fz Cz P3 C3 F3 --step 10 --show
-```
+Generated files are written to `output/`:
 
----
+- `multichannel_plot.html` (interactive)
+- `multichannel_plot.png` (static)
+- `multichannel_plot.pdf` (vector)
 
-## Design Choices
+Static exports require `kaleido` (already in `requirements.txt`).
 
-1. **Scaling**
+## Notes
 
-   * EEG plotted in **µV**.
-   * ECG & CM converted to **mV** for readability.
-   * Dual y-axis used for ECG/CM subplot to preserve scale integrity.
-
-2. **Performance**
-
-   * `Scattergl` is used for large datasets (>10,000 points) for smoother rendering.
-   * Downsampling via `--step` to reduce memory load when needed.
-
-3. **Usability Enhancements**
-
-   * Unified hovermode (`x unified`) to align tooltips across channels.
-   * Range slider included on bottom subplot for intuitive navigation.
-   * Custom zoom controls added to modebar.
-
-
-
-
----
-
-## Future Work
-
-If given more time, I would extend the project with:
-
-* [ ] **GUI-based channel selection** (checkbox toggles instead of CLI args).
-* [ ] **Normalization toggle** (scale signals per channel for comparison).
-* [ ] **Real-time streaming support** for live EEG/ECG monitoring.
-* [ ] **Improved test coverage** and automated validation with sample datasets.
-
----
-
-## Output Files
-
-After running, check the `output/` directory for:
-
-* `multichannel_plot.html` → interactive visualization
-* `multichannel_plot.png` → static image
-* `multichannel_plot.pdf` → vector export (requires `kaleido`)
-
----
+- EEG channels are displayed in uV, ECG/CM in mV (or uV if `--ecg-units uv`).
+- Large datasets render faster with `--step` downsampling.
+- The sample CSV is included to make the repo runnable immediately.
 
 ## License
 
-This project was created as part of the **QUASAR Coding Screener**.
-
+MIT
